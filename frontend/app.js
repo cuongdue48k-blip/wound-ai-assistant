@@ -12,7 +12,8 @@ let bestProb = 0;
 const chatHistory = [];
 
 // Đổi nếu backend deploy ở nơi khác
-const BACKEND_URL = "http://127.0.0.1:3001/api/chat";
+const BACKEND_URL = "https://wound-ai-assistant.onrender.com/api/chat";
+
 
 async function loadModel() {
   const modelURL = TM_URL + "model.json";
