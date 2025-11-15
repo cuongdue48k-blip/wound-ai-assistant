@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Wound AI Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- TensorFlow.js & Teachable Machine -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="app-header">
+        <div class="logo-circle">WA</div>
+        <div>
+          <h1>Nhận dạng và tư vấn sơ cứu vết thương ngoài da bằng AI</h1>
+          <p>Phân tích hình ảnh vết thương & tư vấn sơ cứu cơ bản.</p>
+        </div>
+      </header>
+
+      <p class="disclaimer">
+        ⚠️ Công cụ chỉ cung cấp <strong>thông tin tham khảo</strong>, không thay thế
+        chẩn đoán hoặc điều trị của bác sĩ. Nếu vết thương nặng, đau nhiều,
+        chảy máu không cầm được hoặc có dấu hiệu nguy hiểm, hãy đến cơ sở y tế
+        hoặc gọi cấp cứu ngay.
+      </p>
+
+      <main class="layout">
+        <!-- KHỐI BÊN TRÁI: HÌNH ẢNH & KẾT QUẢ -->
+        <section class="card image-card">
+          <h2>1. Phân tích hình ảnh vết thương</h2>
+
+          <div class="image-actions">
+            <div class="action-group">
+              <button id="btn-webcam" class="btn primary">Dùng webcam</button>
+              <button id="btn-stop-webcam" class="btn subtle">Tắt webcam</button>
+              <div id="webcam-container" class="media-container"></div>
+            </div>
+
+            <div class="divider">
+              <span>hoặc</span>
+            </div>
+
+            <div class="action-group">
+              <label for="image-upload" class="upload-label">
+                <span class="btn secondary">Chọn ảnh từ máy</span>
+                <input id="image-upload" type="file" accept="image/*" />
+              </label>
+              <div id="uploaded-image-container" class="media-container">
+                <img id="uploaded-image" alt="Uploaded preview" />
+              </div>
+            </div>
+          </div>
+
+          <div class="prediction-panel">
+            <h3>Kết quả mô hình</h3>
+            <div id="best-label" class="best-label">
+              Đang tải mô hình hình ảnh...
+            </div>
+            <div id="label-container" class="label-list"></div>
+          </div>
+        </section>
+
+        <!-- KHỐI BÊN PHẢI: CHATBOT -->
+        <section class="card chat-card">
+          <h2>2. Trò chuyện với trợ lý sơ cứu</h2>
+          <p class="chat-subtitle">
+            Mô tả tình trạng, triệu chứng hoặc đặt câu hỏi. Trợ lý sẽ hỗ trợ bạn siêu nhiệt tình nhé !
+          </p>
+
+          <div id="chat-box">
+            <div id="messages"></div>
+
+            <div class="chat-input-area">
+              <textarea
+                id="user-input"
+                rows="3"
+                placeholder="Ví dụ: Mình bị bỏng nước sôi, mô hình nhận là Bỏng mức 2. Mình cần làm gì ngay bây giờ?"
+              ></textarea>
+              <button id="send-btn" class="btn primary">Gửi</button>
+            </div>
+
+            <div class="helper-text">
+              Nhấn <kbd>Ctrl</kbd> + <kbd>Enter</kbd> để gửi nhanh.
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="app-footer">
+      <span>Wound AI Assistant · Demo cá nhân · Không dùng cho mục đích y tế chính thức.</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
